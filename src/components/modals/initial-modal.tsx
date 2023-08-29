@@ -45,9 +45,9 @@ export default function InitialModal() {
 
   return (
     <Dialog open>
-      <DialogContent className="bg-white text-black p-0 overflow-hidden">
-        <DialogHeader className="pt-8 px-6">
-          <DialogTitle className="text-2xl text-center font-bold">
+      <DialogContent className="overflow-hidden bg-white p-0 text-black">
+        <DialogHeader className="px-6 pt-8">
+          <DialogTitle className="text-center text-2xl font-bold">
             Customize your server
           </DialogTitle>
           <DialogDescription className="text-center text-zinc-500">
@@ -56,7 +56,10 @@ export default function InitialModal() {
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <form
+            onSubmit={void form.handleSubmit(onSubmit)}
+            className="space-y-8"
+          >
             <div className="space-y-8 px-6">
               <div className="flex items-center justify-center text-center">
                 TODO: Image upload
@@ -67,13 +70,13 @@ export default function InitialModal() {
                 render={({ field }) => {
                   return (
                     <FormItem>
-                      <FormLabel className="uppercase tex-xs fontt-bold text-zinc-500 dark:text-secondary/70">
+                      <FormLabel className="tex-xs fontt-bold uppercase text-zinc-500 dark:text-secondary/70">
                         Server Name
                       </FormLabel>
                       <FormControl>
                         <Input
                           disabled={isLoading}
-                          className="bg-zinc-300/50 border-0 focus-visable:ring-0 text-black forcus:visible:rign-ffset-0"
+                          className="focus-visable:ring-0 forcus:visible:rign-ffset-0 border-0 bg-zinc-300/50 text-black"
                           placeholder="Enter a server name"
                           {...field}
                         />
@@ -105,6 +108,6 @@ const formSchema = z.object({
   }),
 });
 
-async function onSubmit(values: z.infer<typeof formSchema>) {
+function onSubmit(values: z.infer<typeof formSchema>) {
   console.log(values);
 }
