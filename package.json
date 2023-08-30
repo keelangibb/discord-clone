@@ -49,7 +49,7 @@
     "postinstall": "prisma generate",
     "start": "next start",
     "type-check": "tsc --noEmit",
-    "format": "prettier --write \"src/**/*.ts\""
+    "format": "prettier --write ."
   },
   "version": "0.1.0"
 }
