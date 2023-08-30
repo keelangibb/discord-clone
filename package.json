@@ -48,7 +48,8 @@
     "lint": "next lint --fix",
     "postinstall": "prisma generate",
     "start": "next start",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write \"src/**/*.ts\""
   },
   "version": "0.1.0"
 }
