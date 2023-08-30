@@ -45,11 +45,11 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
+    "format": "prettier --write .",
     "lint": "next lint --fix",
     "postinstall": "prisma generate",
     "start": "next start",
-    "type-check": "tsc --noEmit",
-    "format": "prettier --write ."
+    "type-check": "tsc --noEmit"
   },
   "version": "0.1.0"
 }

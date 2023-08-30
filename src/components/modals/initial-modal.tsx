@@ -18,12 +18,12 @@ import {
 } from "@/components/ui/form";
 import { useEffect, useState } from "react";
 
-import { Button } from "@/components/ui/button";
 import FileUpload from "@/components/file-upload";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function InitialModal() {
   const [isMounted, setIsMounted] = useState(false);
