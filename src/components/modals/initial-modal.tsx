@@ -1,5 +1,14 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+import FileUpload from "@/components/file-upload";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -16,17 +25,11 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useEffect, useState } from "react";
-
-import FileUpload from "@/components/file-upload";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 
 export default function InitialModal() {
   const [isMounted, setIsMounted] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     setIsMounted(true);
@@ -44,6 +47,16 @@ export default function InitialModal() {
 
   if (!isMounted) return null;
 
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      await axios.post("/api/server", values);
+      router.refresh();
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
+    }
+    console.log(values);
+  };
   return (
     <Dialog open>
       <DialogContent className="overflow-hidden bg-white p-0 text-black">
@@ -57,10 +70,7 @@ export default function InitialModal() {
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form
-            onSubmit={void form.handleSubmit(onSubmit)}
-            className="space-y-8"
-          >
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <div className="space-y-8 px-6">
               <div className="flex items-center justify-center text-center">
                 <FormField
@@ -106,6 +116,9 @@ export default function InitialModal() {
               <Button variant={"primary"} disabled={isLoading}>
                 Create
               </Button>
+              <Button onClick={callApi} type="button">
+                Click me
+              </Button>
             </DialogFooter>
           </form>
         </Form>
@@ -123,6 +136,9 @@ const formSchema = z.object({
   }),
 });
 
-function onSubmit(values: z.infer<typeof formSchema>) {
-  console.log(values);
+async function callApi() {
+  console.log("called");
+  const values = { name: "keelan", imageUrl: "https://www.google.com" };
+  return await axios.post("/api/servers", values);
+  // return data;
 }

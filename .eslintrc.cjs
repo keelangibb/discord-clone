@@ -24,6 +24,15 @@ const config = {
       },
     ],
     "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        checksVoidReturn: {
+          // Disables jsx : Promise-returning function provided to attribute where a void return was expected.
+          attributes: false,
+        },
+      },
+    ],
   },
 };
 
