@@ -1,5 +1,5 @@
-import { env } from "@/env.mjs";
 import { PrismaClient } from "@prisma/client";
+import { env } from "~/env.mjs";
 
 // prevents new PrismaClient() from running on every Hot Module Reload
 // https://www.prisma.io/docs/guides/performance-and-optimization/connection-management#prismaclient-in-long-running-applications

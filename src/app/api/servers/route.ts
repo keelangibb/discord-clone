@@ -1,16 +1,12 @@
-import { currentProfile } from "@/lib/current-profile";
-import { prisma } from "@/lib/db";
 import { MemberRole } from "@prisma/client";
 import { NextResponse, type NextRequest } from "next/server";
-import { z } from "zod";
+import { requestInputSchema } from "~/app/api/servers/schema";
+import { currentProfile } from "~/app/setup/helpers/currentProfile";
+import { prisma } from "~/modules/common/db/db";
 
-const schema = z.object({
-  name: z.string().nonempty(),
-  imageUrl: z.string().nonempty(),
-});
 export async function POST(req: NextRequest) {
   try {
-    const reqInput = schema.parse(await req.json());
+    const reqInput = requestInputSchema.parse(await req.json());
     const { name, imageUrl } = reqInput;
 
     const profile = await currentProfile();

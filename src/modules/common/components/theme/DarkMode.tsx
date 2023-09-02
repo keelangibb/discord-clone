@@ -1,17 +1,16 @@
 "use client";
 
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
+import { Button } from "~/modules/common/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Moon, Sun } from "lucide-react";
+} from "~/modules/common/components/ui/dropdown-menu";
 
-import { Button } from "@/components/ui/button";
-import { useTheme } from "next-themes";
-
-export function ModeToggle() {
+export function DarkMode() {
   const { setTheme } = useTheme();
 
   return (

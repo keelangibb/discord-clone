@@ -1,6 +1,5 @@
 import { currentUser, redirectToSignIn } from "@clerk/nextjs";
-
-import { prisma } from "./db";
+import { prisma } from "~/modules/common/db/db";
 
 export async function initialProfile() {
   const user = await currentUser();

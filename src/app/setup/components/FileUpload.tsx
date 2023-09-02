@@ -1,11 +1,10 @@
 "use client";
 
-import { type OurFileRouter } from "@/app/api/uploadthing/core";
-import { UploadDropzone } from "@/lib/uploadthing";
-import { X } from "lucide-react";
-
 import "@uploadthing/react/styles.css";
+import { X } from "lucide-react";
 import Image from "next/image";
+import { UploadDropzone } from "~/app/api//uploadthing/utils";
+import { type OurFileRouter } from "~/app/api/uploadthing/core";
 
 type FileUploadProps = {
   onChange: (url?: string) => void;

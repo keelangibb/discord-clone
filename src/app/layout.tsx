@@ -1,9 +1,9 @@
-import { ThemeProvider } from "@/components/providers/theme-provider";
-import { cn } from "@/lib/utils";
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
-import "./globals.css";
+import "~/app/globals.css";
+import { ThemeProvider } from "~/modules/common/components/providers/ThemeProvider";
+import { cn } from "~/modules/common/utils/classNames";
 
 const font = Open_Sans({ subsets: ["latin"] });
 

@@ -6,9 +6,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
-import FileUpload from "@/components/file-upload";
-import { Button } from "@/components/ui/button";
+import FileUpload from "~/app/setup/components/FileUpload";
+import { Button } from "~/modules/common/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -16,7 +15,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from "~/modules/common/components/ui/dialog";
 import {
   Form,
   FormControl,
@@ -24,8 +23,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from "~/modules/common/components/ui/form";
+import { Input } from "~/modules/common/components/ui/input";
 
 export default function InitialModal() {
   const [isMounted, setIsMounted] = useState(false);
@@ -49,7 +48,7 @@ export default function InitialModal() {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.post("/api/server", values);
+      await axios.post("/api/servers", values);
       router.refresh();
       window.location.reload();
     } catch (error) {

@@ -1,7 +1,7 @@
-import InitialModal from "@/components/modals/initial-modal";
-import { prisma } from "@/lib/db";
-import { initialProfile } from "@/lib/initial-profile";
 import { redirect } from "next/navigation";
+import InitialModal from "~/app/setup/components/InitialModal";
+import { initialProfile } from "~/app/setup/helpers/initialProfile";
+import { prisma } from "~/modules/common/db/db";
 
 export default async function SetupPage() {
   const profile = await initialProfile();
