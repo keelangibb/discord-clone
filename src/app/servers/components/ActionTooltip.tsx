@@ -11,12 +11,9 @@ type ActionTooltipProps = {
   side?: "left" | "right" | "top" | "bottom";
   align?: "start" | "center" | "end";
 };
-export default function ActionTooltip({
-  label,
-  children,
-  side,
-  align,
-}: ActionTooltipProps) {
+export default function ActionTooltip(props: ActionTooltipProps) {
+  const { label, children, side, align } = props;
+
   return (
     <TooltipProvider>
       <Tooltip delayDuration={50}>
