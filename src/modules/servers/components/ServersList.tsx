@@ -1,9 +1,9 @@
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-import NavigationItem from "~/app/servers/components/NavigationItem";
 import { LINKS } from "~/modules/common/constants";
-import { currentProfile } from "~/modules/common/db/profile";
-import { findDiscordServers } from "~/modules/common/db/server";
+import { currentProfile } from "~/modules/profile/db";
+import NavigationItem from "~/modules/servers/components/NavigationItem";
+import { findDiscordServers } from "~/modules/servers/db";
 
 export default async function ServersList() {
   const userProfile = auth();

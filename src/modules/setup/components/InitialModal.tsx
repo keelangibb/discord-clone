@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import FileUpload from "~/app/setup/components/FileUpload";
 import { Button } from "~/modules/common/components/ui/button";
 import {
   Dialog,
@@ -25,6 +24,7 @@ import {
   FormMessage,
 } from "~/modules/common/components/ui/form";
 import { Input } from "~/modules/common/components/ui/input";
+import FileUpload from "~/modules/setup/components/FileUpload";
 
 export default function InitialModal() {
   const [isMounted, setIsMounted] = useState(false);

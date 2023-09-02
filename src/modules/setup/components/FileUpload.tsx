@@ -3,8 +3,10 @@
 import "@uploadthing/react/styles.css";
 import { X } from "lucide-react";
 import Image from "next/image";
-import { type OurFileRouter } from "~/app/api/uploadthing/core";
-import { UploadDropzone } from "~/modules/common/lib/uploadThing";
+import {
+  UploadDropzone,
+  type OurFileRouter,
+} from "~/modules/common/lib/uploadthing";
 
 type FileUploadProps = {
   onChange: (url?: string) => void;

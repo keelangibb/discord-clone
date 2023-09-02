@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
-import ActionTooltip from "~/app/servers/components/ActionTooltip";
 import { LINKS } from "~/modules/common/constants";
 import { cn } from "~/modules/common/utils/utils";
+import ActionTooltip from "~/modules/servers/components/ActionTooltip";
 
 type NavigationItemProps = {
   id: string;
