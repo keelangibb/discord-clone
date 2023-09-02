@@ -1,22 +1,14 @@
 import { redirect } from "next/navigation";
 import InitialModal from "~/app/setup/components/InitialModal";
 import { initialProfile } from "~/app/setup/helpers/initialProfile";
-import { prisma } from "~/modules/common/db";
+import { LINKS } from "~/modules/common/constants";
+import { findDiscordServer } from "~/modules/common/db/server";
 
 export default async function SetupPage() {
   const profile = await initialProfile();
+  const discordServer = await findDiscordServer(profile.id);
 
-  const server = await prisma.server.findFirst({
-    where: {
-      members: {
-        some: {
-          profileId: profile.id,
-        },
-      },
-    },
-  });
-
-  if (server) return redirect(`/servers/${server.id}`);
+  if (discordServer) return redirect(LINKS.servers.find(discordServer.id));
 
   return <InitialModal />;
 }
