@@ -1,5 +1,5 @@
 import { auth } from "@clerk/nextjs";
-import { prisma } from "~/modules/common/db/db";
+import { prisma } from "~/modules/common/db";
 
 export async function currentProfile() {
   const { userId } = auth();

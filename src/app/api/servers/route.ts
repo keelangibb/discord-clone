@@ -2,7 +2,7 @@ import { MemberRole } from "@prisma/client";
 import { NextResponse, type NextRequest } from "next/server";
 import { requestInputSchema } from "~/app/api/servers/schema";
 import { currentProfile } from "~/app/setup/helpers/currentProfile";
-import { prisma } from "~/modules/common/db/db";
+import { prisma } from "~/modules/common/db";
 
 export async function POST(req: NextRequest) {
   try {
