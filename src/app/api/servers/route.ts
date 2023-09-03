@@ -1,8 +1,8 @@
 import { auth } from "@clerk/nextjs";
 import { NextResponse, type NextRequest } from "next/server";
+import { requestInputSchema } from "~/app/api/servers/schema";
 import { currentProfile } from "~/modules/profile/db";
 import { createDiscordServer } from "~/modules/servers/db";
-import { requestInputSchema } from "~/modules/servers/schema";
 
 export async function POST(req: NextRequest) {
   try {

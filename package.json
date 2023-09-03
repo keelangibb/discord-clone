@@ -54,7 +54,8 @@
     "lint": "next lint --fix",
     "postinstall": "prisma generate",
     "start": "next start",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "fix-all": "pnpm format && pnpm lint && pnpm type-check"
   },
   "version": "0.1.0"
 }

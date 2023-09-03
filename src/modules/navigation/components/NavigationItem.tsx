@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import { LINKS } from "~/modules/common/constants";
 import { cn } from "~/modules/common/utils/utils";
-import ActionTooltip from "~/modules/servers/components/navigation/NavigationActionTooltip";
+import { ActionTooltip } from "~/modules/navigation/components";
 
 type NavigationItemProps = {
   id: string;

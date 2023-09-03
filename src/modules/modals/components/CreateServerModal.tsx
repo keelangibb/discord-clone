@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { type z } from "zod";
 import { Button } from "~/modules/common/components/ui/button";
 import {
   Dialog,
@@ -24,15 +24,16 @@ import {
 } from "~/modules/common/components/ui/form";
 import { Input } from "~/modules/common/components/ui/input";
 import { ENDPOINTS } from "~/modules/common/constants";
-import { useModal } from "~/modules/servers/components/modal/hooks/useModalStore";
-import FileUpload from "~/modules/setup/components/FileUpload";
+import { useModal } from "~/modules/modals/hooks";
+import { createServerSchema } from "~/modules/modals/schema/createServer";
+import { FileUpload } from "~/modules/setup/components";
 
 export default function CreateServerModal() {
   const { isOpen, onClose, type } = useModal();
   const router = useRouter();
 
   const form = useForm({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(createServerSchema),
     defaultValues: {
       name: "",
       imageUrl: "",
@@ -47,7 +48,7 @@ export default function CreateServerModal() {
     onClose();
   };
 
-  const handleSubmit = async (values: z.infer<typeof formSchema>) => {
+  const handleSubmit = async (values: z.infer<typeof createServerSchema>) => {
     try {
       await axios.post(ENDPOINTS.servers, values);
       router.refresh();
@@ -127,12 +128,3 @@ export default function CreateServerModal() {
     </Dialog>
   );
 }
-
-const formSchema = z.object({
-  name: z.string().min(1, {
-    message: "Server name is required",
-  }),
-  imageUrl: z.string().min(1, {
-    message: "Server image is required",
-  }),
-});

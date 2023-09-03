@@ -1,5 +1,5 @@
 import { type PropsWithChildren } from "react";
-import NavigationSideBar from "~/modules/servers/components/navigation/NavigationSideBar";
+import { NavigationSideBar } from "~/modules/navigation/components";
 
 export default function ServerLayout(props: PropsWithChildren) {
   const { children } = props;

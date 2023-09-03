@@ -11,7 +11,7 @@ import {
 } from "~/modules/common/components/ui/dropdown-menu";
 
 const themes = ["light", "dark", "system"];
-export function DarkModeToggle() {
+export default function DarkModeToggle() {
   const { setTheme } = useTheme();
 
   return (

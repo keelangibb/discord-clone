@@ -1,8 +1,8 @@
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import { LINKS } from "~/modules/common/constants";
+import { NavigationItem } from "~/modules/navigation/components";
 import { currentProfile } from "~/modules/profile/db";
-import NavigationItem from "~/modules/servers/components/navigation/NavigationItem";
 import { findDiscordServers } from "~/modules/servers/db";
 
 export default async function ServersList() {
