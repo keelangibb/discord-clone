@@ -24,6 +24,7 @@ import {
   FormMessage,
 } from "~/modules/common/components/ui/form";
 import { Input } from "~/modules/common/components/ui/input";
+import { ENDPOINTS } from "~/modules/common/constants";
 import FileUpload from "~/modules/setup/components/FileUpload";
 
 export default function InitialModal() {
@@ -48,7 +49,7 @@ export default function InitialModal() {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.post("/api/servers", values);
+      await axios.post(ENDPOINTS.servers, values);
       router.refresh();
       window.location.reload();
     } catch (error) {
@@ -117,9 +118,6 @@ export default function InitialModal() {
                 <Button variant={"primary"} disabled={isLoading}>
                   Create
                 </Button>
-                <Button onClick={callApi} type="button">
-                  Click me
-                </Button>
               </DialogFooter>
             </form>
           </Form>
@@ -137,10 +135,3 @@ const formSchema = z.object({
     message: "Server image is required",
   }),
 });
-
-async function callApi() {
-  console.log("called");
-  const values = { name: "keelan", imageUrl: "https://www.google.com" };
-  return await axios.post("/api/servers", values);
-  // return data;
-}

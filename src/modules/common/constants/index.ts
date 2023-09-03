@@ -8,8 +8,6 @@ export const LINKS = {
 };
 
 export const ENDPOINTS = {
-  servers: {
-    find: (serverId: string) => `/api/servers/${serverId}`,
-  },
+  servers: "/api/servers",
   uploadthing: "/api/uploadthing",
 };

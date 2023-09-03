@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import { LINKS } from "~/modules/common/constants";
 import { cn } from "~/modules/common/utils/utils";
-import ActionTooltip from "~/modules/servers/components/ActionTooltip";
+import ActionTooltip from "~/modules/servers/components/navigation/NavigationActionTooltip";
 
 type NavigationItemProps = {
   id: string;
@@ -19,6 +19,7 @@ export default function NavigationItem(props: NavigationItemProps) {
 
   const isSameServerId = params?.serverId === id;
   const handleClick = () => router.push(LINKS.servers.find(id));
+
   return (
     <ActionTooltip side="right" align="center" label={name}>
       <button
