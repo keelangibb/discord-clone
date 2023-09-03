@@ -25,7 +25,7 @@ import {
 } from "~/modules/common/components/ui/form";
 import { Input } from "~/modules/common/components/ui/input";
 import { ENDPOINTS } from "~/modules/common/constants";
-import { FileUpload } from "~/modules/setup/components";
+import FileUpload from "~/modules/setup/components/FileUpload";
 
 export default function InitialModal() {
   const [isMounted, setIsMounted] = useState(false);

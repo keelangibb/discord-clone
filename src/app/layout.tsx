@@ -4,7 +4,8 @@ import { Open_Sans } from "next/font/google";
 import { type PropsWithChildren } from "react";
 import "~/app/globals.css";
 import { cn } from "~/modules/common/utils/utils";
-import { ModalProvider, ThemeProvider } from "~/modules/providers";
+import ModalProvider from "~/modules/providers/ModalProvider";
+import ThemeProvider from "~/modules/providers/ThemeProvider";
 
 const font = Open_Sans({ subsets: ["latin"] });
 

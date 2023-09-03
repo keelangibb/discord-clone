@@ -1,7 +1,7 @@
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import { LINKS } from "~/modules/common/constants";
-import { NavigationItem } from "~/modules/navigation/components";
+import NavigationItem from "~/modules/navigation/components/NavigationItem";
 import { currentProfile } from "~/modules/profile/db";
 import { findDiscordServers } from "~/modules/servers/db";
 

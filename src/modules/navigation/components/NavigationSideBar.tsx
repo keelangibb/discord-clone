@@ -1,11 +1,9 @@
 import { UserButton } from "@clerk/nextjs";
 import { ScrollArea } from "~/modules/common/components/ui/scroll-area";
 import { Separator } from "~/modules/common/components/ui/separator";
-import {
-  DarkModeToggle,
-  NavigationAction,
-} from "~/modules/navigation/components";
-import { ServersList } from "~/modules/servers/components";
+import DarkModeToggle from "~/modules/navigation/components/DarkModeToggle";
+import NavigationAction from "~/modules/navigation/components/NavigationAction";
+import ServersList from "~/modules/servers/components/ServersList";
 
 export default function NavigationSideBar() {
   return (
