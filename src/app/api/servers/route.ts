@@ -1,25 +1,18 @@
-import { auth } from "@clerk/nextjs";
 import { NextResponse, type NextRequest } from "next/server";
 import { requestInputSchema } from "~/app/api/servers/schema";
-import { currentProfile } from "~/modules/profile/db";
-import { createDiscordServer } from "~/modules/servers/db";
+import { ProfileService } from "~/modules/profile/services";
+import { ServersService } from "~/modules/servers/services";
 
-export async function POST(req: NextRequest) {
-  try {
-    const reqInput = requestInputSchema.parse(await req.json());
-    const { name, imageUrl } = reqInput;
+export default async function POST(req: NextRequest) {
+  const { name, imageUrl } = requestInputSchema.parse(await req.json());
 
-    const { userId } = auth();
-    if (!userId) return new NextResponse("Unauthorized", { status: 401 });
+  const profile = await ProfileService.getProfile();
 
-    const profile = await currentProfile(userId);
-    if (!profile) return new NextResponse("Unauthorized", { status: 401 });
+  const discordServer = await ServersService.createServer(
+    profile.id,
+    name,
+    imageUrl,
+  );
 
-    const discordServer = await createDiscordServer(profile.id, name, imageUrl);
-
-    return NextResponse.json(discordServer);
-  } catch (error) {
-    console.error("[SERVER_POST]", error);
-    return new NextResponse("Oops I messed up", { status: 500 });
-  }
+  return NextResponse.json(discordServer);
 }

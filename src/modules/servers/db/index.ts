@@ -1,47 +1,49 @@
 import { MemberRole } from "@prisma/client";
 import { prisma } from "~/modules/common/db";
 
-export async function findDiscordServer(profileId: string) {
-  return await prisma.server.findFirst({
-    where: {
-      members: {
-        some: {
-          profileId,
+export class ServersDB {
+  static async findDiscordServer(profileId: string) {
+    return prisma.server.findFirst({
+      where: {
+        members: {
+          some: {
+            profileId,
+          },
         },
       },
-    },
-  });
-}
+    });
+  }
 
-export async function findDiscordServers(profileId: string) {
-  return await prisma.server.findMany({
-    where: {
-      members: {
-        some: {
-          profileId: profileId,
+  static async findDiscordServers(profileId: string) {
+    return prisma.server.findMany({
+      where: {
+        members: {
+          some: {
+            profileId,
+          },
         },
       },
-    },
-  });
-}
+    });
+  }
 
-export async function createDiscordServer(
-  profileId: string,
-  serverName: string,
-  imageUrl: string,
-) {
-  return await prisma.server.create({
-    data: {
-      profileId,
-      name: serverName,
-      imageUrl,
-      inviteCode: crypto.randomUUID(),
-      channels: {
-        create: [{ name: "general", profileId }],
+  static async createDiscordServer(
+    profileId: string,
+    serverName: string,
+    imageUrl: string,
+  ) {
+    return prisma.server.create({
+      data: {
+        profileId,
+        name: serverName,
+        imageUrl,
+        inviteCode: crypto.randomUUID(),
+        channels: {
+          create: [{ name: "general", profileId }],
+        },
+        members: {
+          create: [{ profileId, role: MemberRole.ADMIN }],
+        },
       },
-      members: {
-        create: [{ profileId, role: MemberRole.ADMIN }],
-      },
-    },
-  });
+    });
+  }
 }

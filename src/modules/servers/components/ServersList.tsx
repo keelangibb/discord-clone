@@ -1,18 +1,10 @@
-import { auth } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
-import { LINKS } from "~/modules/common/constants";
 import NavigationItem from "~/modules/navigation/components/NavigationItem";
-import { currentProfile } from "~/modules/profile/db";
-import { findDiscordServers } from "~/modules/servers/db";
+import { ProfileService } from "~/modules/profile/services";
+import { ServersService } from "~/modules/servers/services";
 
 export default async function ServersList() {
-  const userProfile = auth();
-  if (!userProfile.userId) return null;
-
-  const profile = await currentProfile(userProfile.userId);
-  if (!profile) return redirect(LINKS.home);
-
-  const servers = await findDiscordServers(profile.id);
+  const profile = await ProfileService.getProfile();
+  const servers = await ServersService.getServers(profile.id);
 
   return (
     <>

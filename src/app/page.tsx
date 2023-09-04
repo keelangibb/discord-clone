@@ -1,12 +1,12 @@
 import { redirect } from "next/navigation";
 import { LINKS } from "~/modules/common/constants";
 import InitialModal from "~/modules/modals/components/InitialModal";
-import { initialProfile } from "~/modules/profile/services";
-import { findDiscordServer } from "~/modules/servers/db";
+import { ProfileService } from "~/modules/profile/services";
+import { ServersService } from "~/modules/servers/services";
 
 export default async function SetupPage() {
-  const profile = await initialProfile();
-  const discordServer = await findDiscordServer(profile.id);
+  const initialProfile = await ProfileService.getInitialProfile();
+  const discordServer = await ServersService.getServer(initialProfile.id);
 
   if (discordServer) return redirect(LINKS.servers.find(discordServer.id));
 

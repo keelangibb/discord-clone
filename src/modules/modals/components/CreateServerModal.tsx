@@ -86,7 +86,7 @@ export default function CreateServerModal() {
                     <FormItem>
                       <FormControl>
                         <FileUpload
-                          endpoint={"serverImage"}
+                          endpoint="serverImage"
                           value={field.value}
                           onChange={field.onChange}
                         />
@@ -98,28 +98,26 @@ export default function CreateServerModal() {
               <FormField
                 control={form.control}
                 name="name"
-                render={({ field }) => {
-                  return (
-                    <FormItem>
-                      <FormLabel className="tex-xs fontt-bold uppercase text-zinc-500 dark:text-secondary/70">
-                        Server Name
-                      </FormLabel>
-                      <FormControl>
-                        <Input
-                          disabled={isLoading}
-                          className="focus-visable:ring-0 forcus:visible:rign-ffset-0 border-0 bg-zinc-300/50 text-black"
-                          placeholder="Enter a server name"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  );
-                }}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="tex-xs fontt-bold uppercase text-zinc-500 dark:text-secondary/70">
+                      Server Name
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        disabled={isLoading}
+                        className="focus-visable:ring-0 forcus:visible:rign-ffset-0 border-0 bg-zinc-300/50 text-black"
+                        placeholder="Enter a server name"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
             </div>
             <DialogFooter className="bg-gray-100 px-6 py-4">
-              <Button variant={"primary"} disabled={isLoading}>
+              <Button variant="primary" disabled={isLoading}>
                 Create
               </Button>
             </DialogFooter>

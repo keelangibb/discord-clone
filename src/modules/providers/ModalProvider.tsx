@@ -12,9 +12,5 @@ export default function ModalProvider() {
 
   if (!isMounted) return null;
 
-  return (
-    <>
-      <CreateServerModal />
-    </>
-  );
+  return <CreateServerModal />;
 }
