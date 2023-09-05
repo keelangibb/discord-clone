@@ -1,10 +1,12 @@
 import NavigationItem from "~/modules/navigation/components/NavigationItem";
 import { ProfileService } from "~/modules/profile/services";
-import { ServersService } from "~/modules/servers/services";
+import { ServerService } from "~/modules/servers/services";
 
-export default async function ServersList() {
+export default async function ServerIcons() {
   const profile = await ProfileService.getProfile();
-  const servers = await ServersService.getServers(profile.id);
+  if (!profile) return <div>No profile</div>;
+
+  const servers = await ServerService.getAllServersByProfileId(profile.id);
 
   return (
     <>

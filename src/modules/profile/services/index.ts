@@ -1,36 +1,39 @@
-import { auth, currentUser, redirectToSignIn } from "@clerk/nextjs";
-import { ProfileDB } from "~/modules/profile/db";
+import { auth, currentUser } from "@clerk/nextjs";
+import { prisma } from "~/modules/common/db";
 
 export class ProfileService {
-  private static getAuth() {
-    const session = auth();
-    return session;
-  }
-
-  private static async getCurrentUser() {
-    const user = await currentUser();
-    if (!user) return redirectToSignIn() as never;
-
-    return user;
-  }
-
   static async getProfile() {
-    const session = this.getAuth();
-    if (!session.userId) return redirectToSignIn() as never;
+    const { userId } = auth();
+    if (!userId) return null;
 
-    const profile = await ProfileDB.getProfile(session.userId);
-    if (!profile) return redirectToSignIn() as never;
+    const profile = await prisma.profile.findUnique({
+      where: {
+        userId,
+      },
+    });
 
     return profile;
   }
 
   static async getInitialProfile() {
-    const user = await this.getCurrentUser();
+    const user = await currentUser();
+    if (!user) return null;
 
-    const userProfile = await ProfileDB.getProfile(user.id);
+    const userProfile = await prisma.profile.findUnique({
+      where: {
+        userId: user.id,
+      },
+    });
     if (userProfile) return userProfile;
 
-    const newProfile = await ProfileDB.createProfile(user);
+    const newProfile = await prisma.profile.create({
+      data: {
+        userId: user.id,
+        name: `${user.firstName} ${user.lastName}`,
+        imageUrl: user.imageUrl,
+        email: user.emailAddresses[0]!.emailAddress, // null assertion
+      },
+    });
 
     return newProfile;
   }

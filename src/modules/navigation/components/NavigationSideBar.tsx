@@ -3,7 +3,7 @@ import { ScrollArea } from "~/modules/common/components/ui/scroll-area";
 import { Separator } from "~/modules/common/components/ui/separator";
 import DarkModeToggle from "~/modules/navigation/components/DarkModeToggle";
 import NavigationAction from "~/modules/navigation/components/NavigationAction";
-import ServersList from "~/modules/servers/components/ServersList";
+import ServerIcons from "~/modules/navigation/components/ServerIcons";
 
 export default function NavigationSideBar() {
   return (
@@ -11,7 +11,7 @@ export default function NavigationSideBar() {
       <NavigationAction />
       <Separator className="mx-auto h-[2px] w-10 rounded-md bg-zinc-300 dark:bg-zinc-700" />
       <ScrollArea className="w-full flex-1">
-        <ServersList />
+        <ServerIcons />
       </ScrollArea>
       <div className="mt-auto flex flex-col items-center gap-y-4 pb-3">
         <DarkModeToggle />
